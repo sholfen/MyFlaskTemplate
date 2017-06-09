@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+    <title>Login page</title>
+    <script src="/resources/js/3rd/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+
+<h1>Click Login Button</h1>
+<dir>{{message}}</dir>
+<form action="{{ url_for('login_method') }}" class="login-form" method="post">
+  <input type="text" id="username" name="username" placeholder="username"/>
+  <input type="password" id="password" name="password" placeholder="password"/>
+  <input type="submit" value="Login" />
+</form>
+</body>
+
+</html>

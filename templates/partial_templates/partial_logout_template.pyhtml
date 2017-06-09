@@ -1,0 +1,6 @@
+<script>
+    function logout(){
+        window.location.href = '/User/Logout';
+    }
+</script>
+<input type="button" style="margin: 10px;" onclick="logout()" value="Logout" />

@@ -1,0 +1,89 @@
+{% extends "master_page.pyhtml" %}
+
+{% block title %}Home{% endblock %}
+
+{% block js_script %} 
+    <style>
+    .shorten-text {
+        display : inline-block;
+        overflow : hidden;
+        text-overflow : ellipsis;
+        white-space : nowrap;
+        width : 12em;
+    }
+    </style>
+    <script type="text/javascript">
+        function pageInit() {
+            jQuery.ajax({
+                url: '/Home/list_all_employee',
+                type: 'GET',
+                contentType: 'application/json',
+                error: function(xhr) {
+                    console.log('Ajax request error');
+                    showMessageDialog('AJAX Error!');
+                },
+                success: function(res) {
+                    console.log(res.status);
+                    if(res.status==true) {
+                        console.log(res.data);
+                        var scope = angular.element(jQuery("#fooctrl")).scope();
+                        scope.$apply(function(){
+                            scope.employee = res.data;
+                        });
+                    }
+                    else {
+                        var message = res.error_message;
+                        showMessageDialog(message);
+                    }
+                },
+                beforeSend:function(){
+                    mask('please wait...');
+                },
+                complete:function(){
+                    unmask();
+                }
+            });
+        }
+    </script>
+{% endblock %}
+
+{% block body %}
+<div id="fooctrl" ng-controller="fooctrl">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="">FirstName</th>
+                <th style="">LastName</th>
+                <th style="">City</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="x in employee">
+                <td>
+                    <span>{{ '{{ x.first_name }}' }}</span>
+                </td>
+                <td>
+                    <span>{{ '{{ x.last_name }}' }}</span>
+                </td>
+                <td>
+                    <span>{{ '{{ x.city }}' }}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+var app = angular.module('qcApp', []);
+
+app.controller('fooctrl', function($scope) {
+    $scope.foo = 'foo';
+    $scope.employee = [];
+});
+
+app.controller('messageDialog', function($scope) {
+    $scope.message = '';
+});
+
+</script>
+{% endblock %}

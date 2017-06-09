@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Demo Site - {% block title %}{% endblock %}</title>
+
+    <script src="/resources/js/utils.js"></script>
+    <script src="/resources/js/3rd/jquery-2.2.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <!-- bootstrip -->
+    <link rel="stylesheet" href="/resources/css/3rd/bootstrap/3.3.6/bootstrap.min.css">
+    <!-- jQuery block UI -->
+    <script src="/resources/js/3rd/jquery.blockUI.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            mask('please wait...', isMaskBackground=true, hide_object_list=[jQuery("#pageInfo")]);
+            pageInit();
+            unmask();
+        });
+    </script>
+
+    </script>
+    <style>
+        .nav-tabs>li.active>a {
+            background-color: #eeeeee;
+        }
+        .nav-tabs>li>a {
+            border: 1px solid #ddd;
+        }
+    </style>
+
+    {% block js_script %}{% endblock %}
+</head>
+<body>
+<div ng-app="qcApp">
+    <div id="container" class="container" style="width:80%;">
+        <div id="tab">
+            <ul class="nav nav-tabs">
+                <li><a href="/">Home</a></li>
+                <li><a href="/Home/About">About</a></li>
+            </ul>
+        </div>
+        <div style="float: left; width:20%;">
+            <div style="width:300px;">
+                <b hrerf="" style="color:#f0ad4e;">Welcome，{{login_user.name}}</b>
+                {% include logout_template %}
+            </div>
+        </div>
+        <div style="clear:left;">
+        </div>
+    </div>
+
+    <div id="pageInfo">
+    {% block body %}{% endblock %}
+    </div>
+
+    <div id="messageDialog" ng-controller="messageDialog" title="{{ '{{title}}' }}" style="display: none">
+      <p>{{ '{{message}}' }}</p>
+    </div>
+
+</div>
+</body>
+</html>
