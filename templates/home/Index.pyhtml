@@ -48,7 +48,7 @@
 {% endblock %}
 
 {% block body %}
-<div id="fooctrl" ng-controller="fooctrl">
+<div id="fooctrl" class="container" ng-controller="fooctrl" style="width:80%;">
     <table class="table table-striped">
         <thead>
             <tr>
