@@ -57,3 +57,11 @@ def execute_sqlite_command(db_section_name, sql_command, engine):
 
     result = session.execute(sql_command)
     return result
+
+def get_session(engine):
+    Session = sessionmaker()
+    Session.configure(bind=engine)
+    session = Session()
+
+    return session
+

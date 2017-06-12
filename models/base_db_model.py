@@ -24,3 +24,6 @@ class BaseDBModel(object):
 
     def print_db_name(self):
         return self.db_section_name
+
+    def get_session(self):
+        return helper.get_session(self.engine)

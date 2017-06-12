@@ -41,6 +41,18 @@ def test_demo_db():
         print(item['Title'])
     return 'test'
 
+
+@app.route("/{0}/list_all_album".format(controller_name))
+def list_all_album_api():
+    model = DemoDBModel()
+    db_result = model.list_all_album()
+    json_result = {
+            'status': True,
+            'data': db_result
+    }
+
+    return flask.jsonify(json_result)
+
 """
 @app.after_request
 def add_custom_header(response):
