@@ -51,11 +51,3 @@ class DemoDBModel(BaseDBModel):
             })
 
         return result
-        # rows = self.session.query(SynoTestTableObj.version,
-        #         SynoTestTableObj.branch,
-        #         SynoTestTableObj.result,
-        #         label('count', func.count(SynoTestTableObj.result)),
-        #         label('build_time', func.min(SynoTestTableObj.build_time))) \
-        #     .filter_by(result='FAIL') \
-        #     .order_by(SynoTestTableObj.version.desc()) \
-        #     .group_by(SynoTestTableObj.version, SynoTestTableObj.branch, SynoTestTableObj.result)
