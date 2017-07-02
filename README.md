@@ -24,3 +24,21 @@ It' has following folders
 ## Hot to Run It
 
 Just execute the run.py, and then open http://localhost:5566. The test account and password are 'admin', '1234'.
+
+## How to Config a Controller
+
+When you add new controller file, for example /controllers/mycontroller.py. Rember to add code in the /controllers/`__init__`.py:
+```python
+import mycontroller
+```
+
+## Put Static Files
+
+In the resources folder, it has three sub folder: css, js, pic. For example, utils.js is in the path /resources/js/utils.js. The url is http://localhost:5566/resources/js/utils.js.
+
+## Setup View Files
+
+Put your view file in the templates folder, for example /templates/home/Index.pyhtml, and add code:
+```python
+return render_template('./home/Index.pyhtml')
+```
